@@ -3,9 +3,13 @@ public class BinaryTree {
 	/*
 	 * Once you have the tree, you should compute and output the average depth 
 	 * of all the leaves in the tree and the maximum depth of all the leaves. 
-	 * To do this, you will need three recursive subroutines: one to count the leaves, 
-	 * one to find the sum of the depths of all the leaves, and one to find the maximum
-	 * depth. The latter two subroutines should have an int-valued parameter,
+	 * To do this, you will need three recursive subroutines: 
+	 * 
+	 * one to count the leaves, 
+	 * one to find the sum of the depths of all the leaves, 
+	 * and one to find the maximum depth.
+	 * 
+	 * The latter two subroutines should have an int-valued parameter,
 	 * depth, that tells how deep in the tree you've gone. When you call this
 	 * routine from the main program, the depth parameter is 0; when you call
 	 * the routine recursively, the parameter increases by 1.
@@ -16,26 +20,103 @@ public class BinaryTree {
 	
 	public static void main(String[] args) {
 		// Insert 1023 itens to the tree
+		System.out.println("Creating tree");
 		for(int i = 0; i < 1022; i++) {
 			treeInsert(Math.random());
 		}
+		System.out.println("Tree was created");
 		
+		System.out.println("The amount of leaves was: " + countLeaves(root));
+		System.out.println("The max depth encountered was: " + maxDepth(root, 0));
+		System.out.println("The sum of all leaves depth is: " + sumOfLeavesDepth(root, 0));
 		
+		System.out.println();
+		System.out.println("The average depth of the tree is: " + 
+				((double)sumOfLeavesDepth(root, 0) / (double)countLeaves(root)) );
+		
+		System.out.println("End of computation");
 	}
 	
-	private int countLeaves() {
+	/**
+	 * Count how many leaves are there in the tree
+	 * @param root get the root node of the tree being analyzed
+	 * @return if the the node is a leaf, return 1. If it is a common node, 
+	 * recursively gets to the leaves by going deeper into the tree
+	 */
+	private static int countLeaves(TreeNode root) {
 		
-		return 0;
+		int leaves = 0;
+		
+		if(root.left == null && root.right == null) {
+			
+			return 1;
+			
+		} else {
+			
+			if(root.left != null) {
+				leaves += countLeaves(root.left);
+			}
+			
+			if(root.right != null) {
+				leaves += countLeaves(root.right);
+			}
+			
+		}
+		
+		return leaves;
 	}
 	
-	private int sumOfDepth() {
+	private static int sumOfLeavesDepth(TreeNode root, int currentDepth) {
 		
-		return 0;
+		int sum = 0;
+		
+		if(root.left == null && root.right == null) {
+			
+			return currentDepth;
+			
+		} else {
+			if(root.left != null) {
+				sum += sumOfLeavesDepth(root.left, currentDepth + 1);
+			}
+			
+			if(root.right != null) {
+				sum += sumOfLeavesDepth(root.right, currentDepth + 1);
+			}
+		}
+		
+		
+		return sum;
 	}
 	
-	private int maxDepth() {
+	/**
+	 * Calculates the greatest depth found
+	 * @param root the node that is to be considered the root
+	 * @return the greatest depth found
+	 */
+	private static int maxDepth(TreeNode root, int currentDepth) {
 		
-		return 0;
+		int depthLeft = 0;
+		int depthRight = 0;
+		
+		if(root.left == null && root.right == null) {
+			return currentDepth;
+		} else {
+			if(root.left != null) {
+				depthLeft = maxDepth(root.left, currentDepth + 1);
+			}
+			
+			if (root.right != null) {
+				depthRight = maxDepth(root.right, currentDepth + 1);
+			}
+			
+			if(depthLeft > depthRight) {
+				return depthLeft;
+			} else {
+				return depthRight;
+			}
+		}
+		
+
 	}
 	
 	
