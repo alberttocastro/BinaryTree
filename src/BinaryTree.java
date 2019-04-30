@@ -39,7 +39,7 @@ public class BinaryTree {
 	
 	/**
 	 * Count how many leaves are there in the tree
-	 * @param root get the root node of the tree being analyzed
+	 * @param root the root node of the subtree being analyzed
 	 * @return if the the node is a leaf, return 1. If it is a common node, 
 	 * recursively gets to the leaves by going deeper into the tree
 	 */
@@ -66,6 +66,12 @@ public class BinaryTree {
 		return leaves;
 	}
 	
+	/**
+	 * 
+	 * @param root the root node of the subtree being analyzed
+	 * @param currentDepth the actual depth of the node considered as root of the subtree
+	 * @return
+	 */
 	private static int sumOfLeavesDepth(TreeNode root, int currentDepth) {
 		
 		int sum = 0;
@@ -90,7 +96,8 @@ public class BinaryTree {
 	
 	/**
 	 * Calculates the greatest depth found
-	 * @param root the node that is to be considered the root
+	 * @param root the root node of the subtree being analyzed
+	 * @params currentDepth the depth of the current node
 	 * @return the greatest depth found
 	 */
 	private static int maxDepth(TreeNode root, int currentDepth) {
