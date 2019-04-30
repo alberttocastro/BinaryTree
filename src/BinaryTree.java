@@ -11,15 +11,34 @@ public class BinaryTree {
 	 * the routine recursively, the parameter increases by 1.
 	 */
 	
+	private static TreeNode root; 	// Pointer to the root node in the tree.
+									// When the tree is empty, root is null.
+	
 	public static void main(String[] args) {
 		// Insert 1023 itens to the tree
 		for(int i = 0; i < 1022; i++) {
 			treeInsert(Math.random());
 		}
+		
+		
 	}
 	
-	private static TreeNode root; 	// Pointer to the root node in the tree.
-									// When the tree is empty, root is null.
+	private int countLeaves() {
+		
+		return 0;
+	}
+	
+	private int sumOfDepth() {
+		
+		return 0;
+	}
+	
+	private int maxDepth() {
+		
+		return 0;
+	}
+	
+	
 	
 	private static class TreeNode{
 		
